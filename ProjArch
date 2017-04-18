@@ -1,0 +1,169 @@
+List Of Activities	Comments	Reference/Notes	Status for MVC 6 POC	Priority	Comments
+TFS Structure and Process			Not Started		
+Talk to Dan for Setting up a TFS Web Location 	Involve Dan	Use the Sandbox location for this purpose. 	Completed	NA	Use Sandbox
+How does the TFS structure look like for a project?	Involve Dan		NA	NA	
+What are the external/internal dependencies that need to be added	Involve Dan		NA	NA	
+What are the platform components that should be used/imported/referenced.	Involve Dan		NA	NA	
+How is the build going to be structured?	Involve Dan		NA	NA	
+How is the release going to be structured?	Involve Dan		NA	NA	
+What are the post build processes?	Involve Dan		NA	NA	
+Setup and Onboarding			In Progress		
+For all new joinees - Overview of DOC and current applications and current workflow? Which Database will be used etc. Onboarding Document			Not Started		
+Identify list of Developer tools that need to be used? Resharper any others. 			In Progress		http://spstfs.cor.state.pa.us/sites/DefaultCollection/DOC/Shared%20Documents/SR%20Projects/Reference%20Technical%20Project/CAPTOR%20Technology%20Stack.xlsx
+Configuring the Developer machine with the required tools and software with correct versions. Identification of Nuget Packages and their versions. 		To be done after final build. 	Not Started		
+Create a final project template that could be used for any DOC Project			Not Started		
+User Interface			In Progress		
+Define the standards for the User Interface		Review UI/UX for this to define your own. 	Luis will provide this		
+Review the Inspinia Template for the user interface. 			NA		
+How are we going to use Minification and Bundling?	New	Using GULP (Check environment and minify)	In Progress		[AB] Bundling and minification steps happen at build time in MVC6 instead of run time in MVC5. In MVC6, you are expected to manage bundling and minification using a task runner like Grunt or Gulp
+User Interface - We are using MVC5, Jquery, Bootstrap, Toastr.js, CSS3, HTML 5. How will all these work together? Produce a sample.		MVC5 Only	NA		
+Explore more plugins related to User Interface. Datatable.js, List.js, Lazy load. 		Awareness. Use as needed. 	NA		
+Are we using Telerik controls ? How will they be used?		Not decided yet. 	NA		Not planning to buy any controls at this time. 
+how is the header and footer going to be shown		Using Layouts from Louis => Translate to ViewComponent or MVC6 component	In Progress		
+How do we use _ViewStart file to apply the Layouts for common elements like header and footer?			In Progress		
+How are the menus going to be structured?			Luis will provide this		Part of UI/UX  design 
+How are validations going to be done? Client validations/ Server validations? Document Recommendations and suggestions. (Check Fluent Validation and custom validation - Not working in MVC6)		Straightforward validation are good. Custom validations need to be explored. Use Fluent Validations.	Not Started	High	"[AB] FluentValidation is NOT available for ASP.NET5 yet
+https://github.com/JeremySkinner/FluentValidation/issues/98"
+How will Filters be used for authorization? (Check with Architecture team)		Use IAuthenticationFilter and IAuthorizationFilter	Not Started	High	
+How to use Custom Action Filters - For Logging and Exception Handling?			Not Started		
+ActionFilter Attribute 			Not Started		
+FilterConfigClass 			Not Started		
+ResultFilters		Not used yet. 	Not Started		
+ExceptionFilters			Not Started		
+What will be the global filters?		Identify and document this 	Not Started		
+How do we want to set up the Routes?		Using Default Routes and attributes	Completed		
+Do we need multiple routes? 	New		Completed		"example: api/TPSTrnsfPurposes/PetTp/{Pet_Tp}/TrnsfPurposeCd/{Trnsf_PurposeCd}
+api/TPSTrnsfPurposes/TrnsfPurposeCd/{Trnsf_PurposeCd}/PetTp/{Pet_Tp}"
+How are Parital views going to be used? What is the use case to use this view? Use MVC6 ViewComponenets		Validation summary and Header footer 	In Progress		
+Global Style sheets and Common Javascripts where will they reside and how will they be used?		Taken care in GULP	Completed		
+How do we leverage 51 degree and/or WURFL?		Using WURFL able to identify Tablet and Mobile device. This will be achieved using CSS (Viewport/display pixels)	Completed		
+Do we need auto mapper to map different models? Decide on how we would like to map View Model to Business Model and to Domain Model?	New	Completed. 	Completed		
+How are multiple tabs going to be handled with multiple sessions? Check for MVC6		GUID implementation was done however multiple browsers are not being handled properly. 	Not Started		MVC 6?
+Services Layer (Business)			In Progress		
+Do we need service locators?		Using RestSharp	Completed		Yes 
+Where do Business services reside?			Completed		
+How will we use Attribute routing?	New		Completed		
+Are we planning to use Domain Driven Design? 	New	Not necessarily	Completed		
+How is JWT going to be used for securing the services?	New	Add JWT to Request Header	Not Started	Medium 	
+When do we use XML Firewall for webAPI and how do we do this?	New		NA	Medium 	
+Decide on the flow and different Models (View Model, Business Model, Domain models etc.) involved in Layers	New		Completed		
+DB and Database Layer			In Progress		
+Repository Pattern in Entity Framework. How is this going to be used?		"http://www.thereformedprogrammer.net/is-the-repository-pattern-useful-with-entity-framework/
+http://www.thereformedprogrammer.net/is-the-repository-pattern-useful-with-entity-framework-part-2/
+http://www.codeproject.com/Articles/526874/Repositorypluspattern-cplusdoneplusright"	Completed		
+Identify what needs to be done for CRUD with single table 			Completed		
+Identify what needs to be done for CRUD with 1:M table (Master Detail)			In Progress		
+DB First Approach - Assume using Stored Procedures. 			Completed		"[Shantanu]: Location Service & Petition Search Service provided as example. Services use Stored Procedure to get results back. 
+Stored Procedure are not MARS Type"
+DB First Approach - Assume using Stored Procedures calling Stored Procedure. 		MARS?	Not Started		
+DB First Approach - Assume using Stored Procedures having multiple datasets. (MARS)			Not Started	Low	"http://www.binaryintellect.net/articles/30738a7c-5176-4333-aa83-98eab8548da5.aspx
+http://www.codeproject.com/Articles/675933/Returning-Multiple-Result-Sets-from-an-Entity-Fram"
+Identify when should we use stored procedure and when we should use CRUD. 			In Progress		
+Identify Methods in any entity that could potentially be used - GetAll, GetById			Completed		
+How will transactions be used in EF - Unit of Work Pattern?		Need to test	In Progress		
+How will EF work in an asynchronous mode - What are the challenges with these? Is there a need for a Fire and Forget (Async Pub/Sub) type of patterns. 			Not Started	Low	
+Entity Framework - Primary Keys if they are composite key how this will work. 		Explore a sample for save scenario 	Completed	Medium	
+Multi-user scenarios how are these handled in EF?	 	This has been explored. EF will take care of this internally so explicitly nothing might have to be done. 	Not Started	Not	
+How is the DB model going to be created?Is this one DB? One Schema? What are the guidelines to create these?		One Reference Data Model + Other Databases (not sure yet) = DB team is checking this item.	NA		
+Connections/Connection Pooling/Transactions and Concurrency - How will this be handled. 		"Add a tracking property named RowVersion with Timestamp attribute
+[Timestamp]
+public byte[] RowVersion { get; set; }"	Not Started	High	"[EF6 + MVC5] = http://www.asp.net/mvc/overview/getting-started/getting-started-with-ef-using-mvc/handling-concurrency-with-the-entity-framework-in-an-asp-net-mvc-application
+[EF7 + MVC6] = http://ef.readthedocs.org/en/latest/modeling/concurrency.html"
+How will DB errors be handled? When should the retries be allowed? What is the timeout to be set as?			Not Started	Low	
+Review and Determine final process for the DB modelling and creation. 		Db Team will be responsible for this 	NA		
+Reports			Completed	High	[Shantanu] - Report fn Added in ITSReference2015 Project
+Reports - SSRS - How will this work? Report viewer is not available		Check for MVC6. Working for MVC5	Completed	High	[Shantanu] - Looks like duplicate entry to Reports above
+Common and Cross Cutting Concerns			In Progress		
+Common Functions where will they reside? A separate Project for these?			Completed		
+Security and how this will work?		Architecture team working on this 	Not Started	High	
+Encryption and Decryption for sensitive data ? Which algorithms need to be used for doing these and how it is to be done in transit(SSL) as well as static state. 		Db Encryption will be taken care of by DB Team. Transit will be SSL based on certificates. Nothing is being done in code for the same	Completed	Low	
+When is there a need for Multi factor authentication and what should be done for this?		Architecture team working on this 	NA	High	
+Exception Handling		Explored for MVC5 what needs to be done on Web and App. 	Not Started		
+Logging		Explore built-in/Nlog	Not Started		"[AB] NLog.Web isn't ASP.NET 5 compatible due to lack of HttpContext.Current 
+http://stackoverflow.com/questions/35243784/using-nlog-with-asp-net-layout-renderers-in-aspnet-vnext-mvc-6
+https://github.com/NLog/NLog.Web/issues/29"
+Auditing		Enterprise level audit needs to be done. Nothing in code at this time 	NA		
+Any others Enterprise Level Components that need to be considered? Monitoring?		PIWIK and Google Analytics (Only public facing) have been decided for Enterprise Monitoring	In Progress		[AB] PIWIK implemented for ASP.NET5 project. No change, same as done for MVC5 inside _Layout.cshtml
+Caching			Not Started		
+How is redis cache going to be used and which version? Are we going to use it for DB related information(reference data any thing else)?		http://www.codeproject.com/Articles/636730/Distributed-Caching-using-Redis	Not Started		
+Which layers will use caching and how?		Only Services layer is using caching at this time.  Need to explore Web Side caching 	Not Started		
+Help and Other Documents			In Progress		
+Technical Help Documents - How will this be done? Code Comments?		Use Swagger Swashbuckle	In Progress		[AB] Implemented Swagger Swashbuckle for API documentation as well as discoverability and live interactions
+API Help Files - How to dynamically get path of xml generated files in ASP.NET5 for using in Swashbuckle?	Similar to WSDL?	Use Swagger Swashbuckle	In Progress		"[AB] Why is there no WSDL type support for Web Api?   
+https://social.msdn.microsoft.com/Forums/sqlserver/en-US/dd2ae269-d7f0-4213-9d39-b2f85bda8f2c/why-is-there-no-wsdl-type-support-for-web-api?forum=wcf"
+Review Process			Not Started		
+Code Review Process - Decide on this? What needs to be reviewed? What is part of Manual review? What are the automated ones?		Need to explore built-in tools from Microsoft	Not Started		
+How will code metrics be gathered? Use code analysis tools?			Not Started		
+How will code metrics be used and what should developer be looking for?			Not Started		
+How will performance metrics going to be collected?			Not Started		
+How will performance metrics be used and what should developer be looking for?			Not Started		
+Testing			Not Started		
+Unit Testing of Services. How do we use Fakes and MoQs? Note down the steps to do this?		Explored for MVC5	Not Started		
+How are we going to do Test Driven Development ?			Not Started		
+What tools do we use for Test Coverage?			Not Started		
+Create a Single Solution with multiple projects - include WebAPI, Web(MVC), automated test	Involve Dan		Not Started		
+Build and Deployment of Web services and UI work?	Involve Dan 		Not Started		
+Deployment and how this is going to work?			Not Started		
+How will Functional Testing be done?			Not Started		
+How will Performance Testing be done?			Not Started		
+Miscellaneous			In Progress		
+Do we want to pickup something from DOC Database (inmate_data) to start off the development on instead of waiting for Case Notes Requirements?		We have started with Petition System. 	Completed		
+Links from Ujjwal - identify the details from the project and use it in our solution. 		"http://www.codeproject.com/Tips/1036963/ASP-NET-MVC-Using-JQuery-AJAX
+http://www.codeproject.com/Articles/1037026/Validations-in-MVC
+http://www.codeproject.com/Articles/687647/Detailed-Tutorial-for-Building-ASP-NET-WebAPI-REST
+http://www.codeproject.com/Articles/1036704/Moving-from-ASP-NET-MVC-to-TypeScript"	NA		
+How are the Enterprise wide CSS, Javascript, Common DLLs, Cross cutting concerns etc be integrated into a project. 			Not Started		
+Should we allow the application to work without Javascript?		Not expected to work. 	Not required	Low	
+Do we need to cater to Internet users? How will this be taken care of ?			Not required	Low	
+MQ Servers - Are we planning to use this and for what? 			Not required	Low	
+How will we interface with mainframes? 			Not Started	Low	
+Is there any use case for Parallel Programming or task ?			Not Started	Low	
+Workflows - how and when do we use them ? Is there a use case for this?			Not Started	Low	
+Rule Engine - How and when do we use them? Is there a use case for this?			Not Started	Low	
+What are the various search Patterns that needs to be used? How are we going to retrieve 100s or even 1000s or records, Pagination, sorting on these records?			Not Started	High	"Fetch only a max of 500 records at a time. 
+Cache the 500 record. 
+Show only 25 records at a time. 
+On transitioning from the (500/25) to (500/25)+1 st page a new fetch will be performed. 
+On sort only first 500 will be sorted so If sort order is changed then UI/UX should handle such that the new fetch is performed with new 500 records. 
+This would typically be done with Linq queries. 
+All business needs that will require more than 500 records need to be addressed as an exception. "
+How are large files going to be uploaded?		Tested with 1 MB on MVC5	In Progress	High	
+how is spelling checks going to be done?		Only browser based spellcheck will be used at this time	Not required	High	
+How does the Entity framework work with multiple databases? Completed for MVC5		http://www.c-sharpcorner.com/UploadFile/ee01e6/how-to-join-two-tables-from-different-database-using-entity/	Completed	Low	"Context Switching applied to the EF by keeping UOW & Generic Repository use common between two database.
+Development - Sandbox\ReferencePOC Team ;   Sandbox\Iteration 4 - Designed & Developed
+
+[Shantanu] Recommendation: Rather than using above approach of using two context & databases, develop web api services for the  second database and use that service into first project. 
+Later on this is what will be the case when Architecture team will design and develop something meaningful like MDM (Reference Services), consuming that service into your project will be easy.
+Entry point for the service will be as agreed upon - It can be from Web API (Business) section of first Project itself.
+
+[Shantanu] Completed - for MVC 5 in ITSReference2015"
+Logging using Interceptors on the EF6.			Not required		
+Refactor to HTML helpers		Can be Tag Helpers	Not Started	Low	
+One Page with all HTML Controls and Corresponding CSS for the same. 		Luis (UI) will work to get the CSS for various controls	Completed	Low	
+Comparison of the 3 editors - SummerNote, CLEditor, TinyMC		Finalized with TinyMCE	Completed	High	
+Test out the different GUID for separate TAB concept.			Not Started	High	
+Using Modernizr java script to identify older versions of browsers that don’t support latest technologies. 		Luis (UI) will work on this	NA	High	
+Using Futures concept in current MVC framework		Use latest MVC framework 	Not Required		
+Have a separate Project for Reference Data 			Not Started	Medium	
+Default Key Press Event or other keyboard event handling. 					
+Using Toastr.js file for immediate messages on screen					
+Check page Sizes with Bundling and Minification enabled					
+On Model Validation failure why should the drop downs be repopulated?		No viewstate. 	Completed	medium	
+Populating the ViewBag in the ActionFilterAttribute whenever there is a Layout that needs to be created based on some parameter. 				High	
+Why is enableOptimizations not working for the Bundletable?			In Progress	Low	[AB] In previous versions, the optimized file was created on the fly by the web optimization framework. In MVC6, you are expected to manage bundling and minification using a task runner like Grunt or Gulp.
+For CORS - use cleaner way to enable CORS instead of just adding in the header. 			Completed	High	
+Using different CSS layouts for different Screen Resolution. Identify where this needs to be done and steps to make this happen - Sample 				High	
+Use AJAX namespace 			Completed	High	
+Refactor Search functionality to use the AJAX namespace and classes appropriate for search			Not started	Medium	
+Automapper - Refactor to remove For loop 			Completed	High	
+Add the correlation Id to the Enterprise Logger			Completed	High	
+How are large files going to be downloaded/uploaded?				High	
+Using SignalR for the Notifications 			Not Required	Low	Currently notifications will be a pull mechanism instead of a Push mechanism. 
+Upgrade to the new Framework 4.5.2 			Not required		We are moving to ASP.NET 6 using .NET FW 4.6.1
+Enriched View Concept to overcome lack of Viewstate 					
+Explore Caching to overcome lack of Viewstate					
+Look at Grunt, Gulp, Bower, npm			In Progress		[AB] Bundling and minification steps happen at build time in MVC6 instead of run time in MVC5. In MVC6, you are expected to manage bundling and minification using a task runner like Grunt or Gulp
+Explore TagHelpers					
+Refactor Generic Repository to a separate project/common?			In Progress		[AB] Not required, but need to Program against abstraction (IGenericRepository) and not concrete classe (GenericRepository)
+Explore Query operation using EF instead of stored proc					
+Explore Swagger for Documentation and other functionality			In progress		[AB] Implemented Swagger Swashbuckle
